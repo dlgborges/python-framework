@@ -44,6 +44,7 @@ acesso_liberado = (usuário == 'admin' and senha == 1234)
 # Leia o valor da compra e se o cliente é VIP (True ou False).
 # O cliente ganha 10% de desconto se o valor for maior que R$ 100 ou ele for VIP.
 # Exiba o valor final com desconto (se aplicável) ou o valor original.
+
 valor_compra = float(input('Informe o valor da compra: '))
 cliente_vip = input('Cliente VIP? S/N ').lower() == 's'
 desconto_dez = (valor_compra > 100 or cliente_vip) and (valor_compra * 0.1)
@@ -56,7 +57,8 @@ print(f'O valor final da compra é de: {valor_final}')
 # Enunciado:
 # Leia a idade e o peso.
 # Para doar sangue, a pessoa deve ter entre 16 e 69 anos (inclusive) e pesar pelo menos 50 kg.
-# Use and para verificar ambos os critérios e informe se a pessoa pode doar.
+# # Use and para verificar ambos os critérios e informe se a pessoa pode doar.
+
 idade = int(input('Informe a idade do indivíduo: '))
 peso = float(input('Informe o peso do indivíduo: '))
 pode_doar = (idade > 16 and idade < 69) and (peso >= 50)
@@ -70,6 +72,7 @@ pode_doar = (idade > 16 and idade < 69) and (peso >= 50)
 # Leia o dia da semana (1=segunda, 7=domingo) e a hora (0 a 23).
 # Determine se a loja está aberta.
 # Dica: use and para combinar dia útil com horário, e or se quiser tratar sábado/domingo como fechado.
+
 print('Vamos verificar se a loja está aberta!')
 dia_semana = int(input('Informe o dia da semana (1=segunda, 7=domingo): '))
 hora = int(input('Informe a hora: '))
@@ -84,6 +87,7 @@ aberta = (dia_semana > 0 and dia_semana < 6) and (hora >=9 and hora <=23)
 # Leia as notas de Matemática e Português.
 # O aluno é aprovado se ambas as notas forem maiores ou iguais a 6.
 # Use and para verificar e exiba "Aprovado" ou "Reprovado".
+
 nota_matematica = int(input('Informe a nota de Matemática: '))
 nota_portugues = int(input('Informe a nota de Português: '))
 aprovado = nota_matematica >= 6 and nota_portugues >= 6
@@ -95,12 +99,11 @@ aprovado = nota_matematica >= 6 and nota_portugues >= 6
 # Um ano é bissexto se for divisível por 4, mas não por 100, a menos que também seja divisível por 400.
 # Leia um ano e use and e or para determinar se ele é bissexto.
 # Exiba "Ano bissexto" ou "Ano não bissexto".
+
 ano = int(input('Informe o ano que deseja saber se é bissexto: '))
-leap = (((ano % 4 == 0) and (not ano % 100 == 0)) and (ano % 400 == 0))
+leap = (((ano % 4 == 0) and (not ano % 100 == 0)) or ((ano % 4 == 0) and (ano % 400 == 0)))
 
 leap and print('Ano bissexto') or (not leap and print('Ano não bissexto'))
-
-
 
 # 9. Faixa etária
 # Enunciado:
@@ -112,7 +115,13 @@ leap and print('Ano bissexto') or (not leap and print('Ano não bissexto'))
 
 # "Adulto" se idade ≥ 18
 # Use and e or para definir os intervalos e exiba a classificação.
+# idade = int(input('Informe a idade do indivíduo: '))
 
+crianca = idade < 12
+adolescente = 12 <= idade <=17
+adulto = idade >= 18
+
+(crianca and (not adolescente and not adulto) and print('Criança')) or (adolescente and not adulto and  print('Adolescente')) or (adulto and print('Adulto'))
 
 
 # 10. Sistema de alerta de temperatura e umidade
@@ -122,3 +131,9 @@ leap and print('Ano bissexto') or (not leap and print('Ano não bissexto'))
 # Caso contrário, exiba "Condições normais".
 # Use or para combinar as condições.
 
+temperatura = float(input('Informe a temperatura(°C): '))
+umidade = float(input('Informe a umidade do ar(%): '))
+
+alerta = temperatura > 35 or umidade > 70
+
+(alerta and print('Alerta, alerta, condição crítica!')) or (not alerta and print('Condições normais.'))
