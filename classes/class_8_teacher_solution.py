@@ -257,6 +257,29 @@ else:
 # #     quantidade =  
 # #     print()
 
+v = int(input('>>'))
 
 
-    
+if v < 10 or v > 1000 or v % 5 != 0:
+    print('invalida')
+else:
+    p50 = v // 50
+    v  =  v % 50
+
+
+    p20 = v // 20
+    v  =  v % 20
+
+
+    p10 = v // 10
+    v  =  v % 10
+
+
+    p5 = v // 5
+    v  =  v % 5    
+
+
+    print('notas de 50', p50)
+    print('notas de 20', p20)
+    print('notas de 10', p10)
+    print('notas de 5', p5)
