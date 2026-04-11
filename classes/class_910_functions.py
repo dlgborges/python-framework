@@ -1,14 +1,156 @@
-# ### **1. Calculadora com Funções**
+from itertools import chain
 
+# ### **1. Calculadora com Funções**
 # Crie funções separadas para as quatro operações básicas (`somar`, `subtrair`, `multiplicar`, `dividir`). Em seguida, escreva um programa que leia dois números e a operação desejada (como string) e chame a função correspondente. A divisão deve tratar divisão por zero.
+# def soma(x, y):
+#     return x + y
+
+# def subtracao(x, y):
+#     return x - y
+
+# def multiplicacao(x, y):
+#     return x * y
+
+# def divisao(x, y):
+#     try:
+#         return x / y
+#     except ZeroDivisionError as erro:
+#         print('Divisão por 0 não existe, Einstein!') #return erro
+
+# def saudacao():
+#     operacao = input('''Escolha a operação que você deseja efetuar:
+#                     1 - soma
+#                     2 - subtracao
+#                     3 - multiplicacao
+#                     4 - divisao
+#                     0 - SAIR
+#                     ''')
+#     numero_primeiro = int(input('Entre o primeiro número da operação: '))
+#     numero_segundo= int(input('Entre o segundo número da operação: '))
+#     return operacao, numero_primeiro, numero_segundo
+
+# while True:
+#     operacao, numero_primeiro, numero_segundo = saudacao()
+#     match operacao:
+#         case '1':
+#             nome_operacao = 'soma'
+#             print(f'O resultado da {nome_operacao} dos dois números é igual a:', soma(numero_primeiro, numero_segundo))
+#         case '2':
+#             nome_operacao = 'subtracao'
+#             print(f'O resultado da {nome_operacao} dos dois números é igual a:', subtracao(numero_primeiro, numero_segundo))
+#         case '3':
+#             nome_operacao = 'multiplicacao'
+#             print(f'O resultado da {nome_operacao} dos dois números é igual a:', multiplicacao(numero_primeiro, numero_segundo))
+#         case '4':
+#             nome_operacao = 'divisao'
+#             print(f'O resultado da {nome_operacao} dos dois números é igual a:', divisao(numero_primeiro, numero_segundo))
+#         case '0':
+#             print('Saindo do programa.')
+#             break
+
 
 # ### **2. Validador de CPF (simplificado)**
+# Crie uma função `validar_cpf(cpf)` que recebe uma string com 11 dígitos e retorna `True` se for válido (use o algoritmo básico de validação de CPF: https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/). Em seguida, teste a função com alguns CPFs.
 
-# Crie uma função `validar_cpf(cpf)` que recebe uma string com 11 dígitos e retorna `True` se for válido (use o algoritmo básico de validação de CPF). Em seguida, teste a função com alguns CPFs.
+# 1. Criar funcao que valida o CPF
+ # Retorna valido ou invalido
+ # CPF = string - vamos precisar parsear cada um dos números
+# cpf = '52998224725'
+# digito = cpf[-2:]
+
+
+#print(digito, digito_primeiro, digito_segundo)
+# multiplica_digito_primeiro = 0
+# contador_cpf = 0
+
+def valida_qtd_digitos(cpf):
+    if len(cpf) > 11:
+        return cpf[0:11]
+
+def valida_digito_primeiro(cpf):
+    cpf = valida_qtd_digitos(cpf)
+    digito_primeiro = int(cpf[-2:-1])
+    multiplica_digito_primeiro = 0
+    contador_cpf = 0
+
+    for i in range(10, 1, -1):
+        #print(cpf[-len(cpf)])
+        multiplica_digito_primeiro += int(cpf[contador_cpf]) * i
+        contador_cpf += 1
+
+        # print(i)
+    # print(multiplica_digito_primeiro)
+
+    resto_multiplica_primeiro = multiplica_digito_primeiro * 10 % 11
+    # print(resto_multiplica_primeiro)
+
+    if resto_multiplica_primeiro == digito_primeiro:
+        return True
+
+def valida_digito_segundo(cpf):
+    digito_segundo = int(cpf[-1:])
+    multiplica_digito_segundo = 0
+    contador_cpf = 0
+
+    for i in range(11, 1, -1):
+        #print(cpf[-len(cpf)])
+        multiplica_digito_segundo += int(cpf[contador_cpf]) * i
+        contador_cpf += 1
+
+        # print(i)
+    # print(multiplica_digito_segundo)
+
+    resto_multiplica_segundo = multiplica_digito_segundo * 10 % 11
+    # print(resto_multiplica_segundo)
+
+    if resto_multiplica_segundo == digito_segundo:
+        return True
+
+
+
+def valida_cpf(valida_primeiro, valida_segundo, cpf):
+    i = 0
+    all_same = cpf[i] == cpf[i+1] == cpf[i+2] == cpf[i+3] == cpf[i+4] == cpf[i+5] == cpf[i+6] == cpf[i+7] == cpf[i+8] == cpf[i+9] == cpf[i+10]
+
+    if all_same:
+        return False
+    elif valida_primeiro or valida_segundo == False:
+        return False
+    elif valida_primeiro and valida_segundo == True:
+        return True
+    else:
+        return False
+
+# print('Primeiro dígito é válido?', valida_digito_primeiro(cpf))
+# print('Segundo dígito é válido?', valida_digito_segundo(cpf))
+
+# 2. Pedir o CPF ao usuário
+cpf = input('Informe o número (apenas os dígitos) de CPF para saber se é válido: ')
+
+# 3. Chamar a funcao que valida o CPF, usando o CPF como parametro de entrada
+cpf_valido = valida_cpf(valida_digito_primeiro(cpf) , valida_digito_segundo(cpf), cpf)
+
+((cpf_valido) and print('CPF válido')) or (not (cpf_valido) and print('CPF Inválido'))
+
 
 # ### **3. Gerador de Tabuada**
 
 # Escreva uma função `tabuada(numero, inicio=1, fim=10)` que exibe a tabuada do `numero` no intervalo `[inicio, fim]`. Se os argumentos `inicio` e `fim` não forem fornecidos, use 1 e 10.
+
+def tabuada(numero, inicio=1, fim=10):
+    tabuada = []
+    start = 1
+
+    for i in range(inicio,fim):
+        tabuada.append(f'{numero} x {i} = {numero * i}')
+    print(tabuada)
+
+while True:
+    numero = int(input('Informe um número inteiro positivo para calcularmos sua tabuada: '))
+    inicio, fim = int(input('Informe o intervalo da tabuada a ser calculado (ex. 1, 10 = 1 ao 10| 2,4 = 2 ao 4)')).split(",")
+    tabuada(numero, inicio, fim)
+
+
 
 # ### **4. Contador de Palavras**
 
