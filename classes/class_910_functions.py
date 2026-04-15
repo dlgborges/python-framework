@@ -63,102 +63,177 @@ from itertools import chain
 # multiplica_digito_primeiro = 0
 # contador_cpf = 0
 
-def valida_qtd_digitos(cpf):
-    if len(cpf) > 11:
-        return cpf[0:11]
+# def valida_qtd_digitos(cpf):
+#     if len(cpf) > 11:
+#         return cpf[0:11]
 
-def valida_digito_primeiro(cpf):
-    cpf = valida_qtd_digitos(cpf)
-    digito_primeiro = int(cpf[-2:-1])
-    multiplica_digito_primeiro = 0
-    contador_cpf = 0
+# def valida_digito_primeiro(cpf):
+#     cpf = valida_qtd_digitos(cpf)
+#     digito_primeiro = int(cpf[-2:-1])
+#     multiplica_digito_primeiro = 0
+#     contador_cpf = 0
 
-    for i in range(10, 1, -1):
-        #print(cpf[-len(cpf)])
-        multiplica_digito_primeiro += int(cpf[contador_cpf]) * i
-        contador_cpf += 1
+#     for i in range(10, 1, -1):
+#         #print(cpf[-len(cpf)])
+#         multiplica_digito_primeiro += int(cpf[contador_cpf]) * i
+#         contador_cpf += 1
 
-        # print(i)
-    # print(multiplica_digito_primeiro)
+#         # print(i)
+#     # print(multiplica_digito_primeiro)
 
-    resto_multiplica_primeiro = multiplica_digito_primeiro * 10 % 11
-    # print(resto_multiplica_primeiro)
+#     resto_multiplica_primeiro = multiplica_digito_primeiro * 10 % 11
+#     # print(resto_multiplica_primeiro)
 
-    if resto_multiplica_primeiro == digito_primeiro:
-        return True
+#     if resto_multiplica_primeiro == digito_primeiro:
+#         return True
 
-def valida_digito_segundo(cpf):
-    digito_segundo = int(cpf[-1:])
-    multiplica_digito_segundo = 0
-    contador_cpf = 0
+# def valida_digito_segundo(cpf):
+#     digito_segundo = int(cpf[-1:])
+#     multiplica_digito_segundo = 0
+#     contador_cpf = 0
 
-    for i in range(11, 1, -1):
-        #print(cpf[-len(cpf)])
-        multiplica_digito_segundo += int(cpf[contador_cpf]) * i
-        contador_cpf += 1
+#     for i in range(11, 1, -1):
+#         #print(cpf[-len(cpf)])
+#         multiplica_digito_segundo += int(cpf[contador_cpf]) * i
+#         contador_cpf += 1
 
-        # print(i)
-    # print(multiplica_digito_segundo)
+#         # print(i)
+#     # print(multiplica_digito_segundo)
 
-    resto_multiplica_segundo = multiplica_digito_segundo * 10 % 11
-    # print(resto_multiplica_segundo)
+#     resto_multiplica_segundo = multiplica_digito_segundo * 10 % 11
+#     # print(resto_multiplica_segundo)
 
-    if resto_multiplica_segundo == digito_segundo:
-        return True
-
-
-
-def valida_cpf(valida_primeiro, valida_segundo, cpf):
-    i = 0
-    all_same = cpf[i] == cpf[i+1] == cpf[i+2] == cpf[i+3] == cpf[i+4] == cpf[i+5] == cpf[i+6] == cpf[i+7] == cpf[i+8] == cpf[i+9] == cpf[i+10]
-
-    if all_same:
-        return False
-    elif valida_primeiro or valida_segundo == False:
-        return False
-    elif valida_primeiro and valida_segundo == True:
-        return True
-    else:
-        return False
-
-# print('Primeiro dígito é válido?', valida_digito_primeiro(cpf))
-# print('Segundo dígito é válido?', valida_digito_segundo(cpf))
-
-# 2. Pedir o CPF ao usuário
-cpf = input('Informe o número (apenas os dígitos) de CPF para saber se é válido: ')
-
-# 3. Chamar a funcao que valida o CPF, usando o CPF como parametro de entrada
-cpf_valido = valida_cpf(valida_digito_primeiro(cpf) , valida_digito_segundo(cpf), cpf)
-
-((cpf_valido) and print('CPF válido')) or (not (cpf_valido) and print('CPF Inválido'))
+#     if resto_multiplica_segundo == digito_segundo:
+#         return True
 
 
-# ### **3. Gerador de Tabuada**
 
-# Escreva uma função `tabuada(numero, inicio=1, fim=10)` que exibe a tabuada do `numero` no intervalo `[inicio, fim]`. Se os argumentos `inicio` e `fim` não forem fornecidos, use 1 e 10.
+# def valida_cpf(valida_primeiro, valida_segundo, cpf):
+#     i = 0
+#     all_same = cpf[i] == cpf[i+1] == cpf[i+2] == cpf[i+3] == cpf[i+4] == cpf[i+5] == cpf[i+6] == cpf[i+7] == cpf[i+8] == cpf[i+9] == cpf[i+10]
 
-def tabuada(numero, inicio=1, fim=10):
-    tabuada = []
-    start = 1
+#     if all_same:
+#         return False
+#     elif valida_primeiro or valida_segundo == False:
+#         return False
+#     elif valida_primeiro and valida_segundo == True:
+#         return True
+#     else:
+#         return False
 
-    for i in range(inicio,fim):
-        tabuada.append(f'{numero} x {i} = {numero * i}')
-    print(tabuada)
+# # print('Primeiro dígito é válido?', valida_digito_primeiro(cpf))
+# # print('Segundo dígito é válido?', valida_digito_segundo(cpf))
 
-while True:
-    numero = int(input('Informe um número inteiro positivo para calcularmos sua tabuada: '))
-    inicio, fim = int(input('Informe o intervalo da tabuada a ser calculado (ex. 1, 10 = 1 ao 10| 2,4 = 2 ao 4)')).split(",")
-    tabuada(numero, inicio, fim)
+# # 2. Pedir o CPF ao usuário
+# cpf = input('Informe o número (apenas os dígitos) de CPF para saber se é válido: ')
 
+# # 3. Chamar a funcao que valida o CPF, usando o CPF como parametro de entrada
+# cpf_valido = valida_cpf(valida_digito_primeiro(cpf) , valida_digito_segundo(cpf), cpf)
+
+# ((cpf_valido) and print('CPF válido')) or (not (cpf_valido) and print('CPF Inválido'))
+
+
+# # ### **3. Gerador de Tabuada**
+
+# # Escreva uma função `tabuada(numero, inicio=1, fim=10)` que exibe a tabuada do `numero` no intervalo `[inicio, fim]`. Se os argumentos `inicio` e `fim` não forem fornecidos, use 1 e 10.
+
+# def tabuada(numero, inicio=1, fim=10):
+#     tabuada = []
+#     start = 1
+
+#     for i in range(inicio,fim):
+#         tabuada.append(f'{numero} x {i} = {numero * i}')
+#     print(tabuada)
+
+# while True:
+#     numero = int(input('Informe um número inteiro positivo para calcularmos sua tabuada: '))
+#     inicio, fim = int(input('Informe o intervalo da tabuada a ser calculado (ex. 1, 10 = 1 ao 10| 2,4 = 2 ao 4)')).split(",")
+#     tabuada(numero, inicio, fim)
+#     break
 
 
 # ### **4. Contador de Palavras**
-
 # Crie uma função `contar_palavras(texto)` que retorna um dicionário com a contagem de cada palavra no texto (considere palavras separadas por espaços). O programa principal deve ler uma frase e exibir o resultado.
+# def conta_palavras(text):
+#     split_text = text.split()
+#     dict_text = {}
+#     # count = 0
+    
+#     for i in split_text:
+#         if i in dict_text:
+#             dict_text[i] += 1
+#         else:
+#             dict_text[i] = 1
+    
+#     return dict_text
+
+# print(conta_palavras('teste de conta palavras no teste de contagem de palavras grandes e pequenas'))
 
 # ### **5. Ordenação Personalizada**
-
 # Implemente uma função `ordenar_lista(lista, crescente=True)` que retorna uma nova lista ordenada. Se `crescente=True`, ordena em ordem crescente; caso contrário, decrescente. Não use `sorted()` ou `list.sort()` (implemente o algoritmo de ordenação de sua escolha, como bolha).
+lista = [12,2,8,4,5,6,7,3,1,14,15,8,2,1] #[15, 8, 10, 1]
+
+def criar_set(lista):
+    lista_set = []
+    for i in lista:
+        if len(lista_set) < 1 :
+            lista_set.append(i)
+        else:
+            if i in lista_set:
+                continue
+            else:
+                lista_set.append(i)
+    
+    return lista_set
+        
+
+def ordenar_lista(lista, crescente=True):
+    print('Vamos ordenar essa lista!')
+    lista_ordenada = []
+
+    # pega o primeiro e compara com o próximo e assim por diante, até o último
+    # Caso crescente - solução 1:
+     # Se o nro sendo comparado for maior do que o próximo, comparar com o próximo até que não seja maior colocar o primeiro na posição do segundo (vai deslocar o segundo para a direita)     
+      # Se não, coloca o segundo na posição do primeiro index()
+
+    # Caso crescente - solução 2:
+     # Achar o MAIOR nro e colocá-lo na última posição da lista (lista[-1] = MAIOR) até esgotar a lista
+      # A lista vai diminuindo (o último elemento não precisa ser lido, já sabemos que é o MAIOR). O próximo MAIOR entra na posição lista[-2] e assim por diante.
+
+
+    for i in lista:
+        print('i', i)
+        for x in range(len(lista)):
+            print('x', x)
+            if len(lista_ordenada) < 1: #i < lista[x] and
+                lista_ordenada.append(i)
+                print(lista_ordenada)
+                break
+            else:
+                if crescente == True: #and i not in lista_ordenada:
+                    if i < lista[x]:
+                        print('list[x]', lista[x])
+                        lista_ordenada.insert(x, i)
+                        print(lista_ordenada)
+                        break
+                    else:
+                        lista_ordenada.insert(lista.index(i)+1, lista[x])
+                else:
+                    if i > lista[x]: #and i not in lista_ordenada:
+                        print('list[x]', lista[x])
+                        lista_ordenada.insert(x, i)
+                        print(lista_ordenada)
+                        break
+                    else:
+                        continue
+    
+    return lista_ordenada
+
+#print(criar_set(lista))
+
+print(ordenar_lista(criar_set(lista)))
+
+
 
 # ### **6. Jogo de Adivinhação**
 
