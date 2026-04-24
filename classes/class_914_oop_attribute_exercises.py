@@ -49,7 +49,7 @@
 #     total_contadores = 0
 
 #     def __init__(self):
-#         self.total_contadores += 1
+#         Contador.total_contadores += 1
     
 #     def exibir_total(self):
 #         print(f'Temos um total de {self.total_contadores} Contadores')
@@ -110,6 +110,8 @@ macarrao.aplicar_desconto(30)
 macarrao.aplicar_desconto(50)
 macarrao.preco = 5.5
 print(macarrao.preco)
+macarrao.aplicar_desconto(30)
+macarrao.aplicar_desconto(50)
 
 # ### **Exercício 4 – Banco com Saldo Privado**
 
@@ -120,8 +122,30 @@ print(macarrao.preco)
 # - `exibir_saldo()` – retorna o saldo (use propriedade `saldo` apenas para leitura).
     
 #     Crie uma conta, realize operações e exiba o saldo.
-    
+class ContaBancaria:
+    def __init__(self, saldo:float):
+        self.__saldo = saldo
+        print(f'Nova conta bancária aberta com saldo de {self.exibir_saldo}')
 
+    def depositar(self, valor:float):
+        self.__saldo += valor
+
+    def sacar(self, valor:float):
+        if self.__saldo > valor:
+            self.__saldo -= valor
+        else:
+            print('Não há saldo suficiente para o saque')
+    
+    @property
+    def exibir_saldo(self):
+        return self.__saldo
+
+conta_1 = ContaBancaria(100)
+conta_1.depositar(200)
+conta_1.sacar(200)
+conta_1.exibir_saldo
+conta_1.sacar(200)
+conta_1.exibir_saldo
     
 
 # ---
@@ -135,7 +159,41 @@ print(macarrao.preco)
 # - `situacao()` – retorna "Aprovado" se média >= 7, "Recuperação" se >= 5, "Reprovado" caso contrário.
     
 #     Teste com um aluno e algumas notas.
+
+# class Aluno:
+#     def __init__(self, nome: str, matricula:int, notas:list[int]):
+#         self.nome = nome
+#         self.matricula = matricula
+#         self.__notas = notas
+
+#     def adicionar_nota(self, nota: int):
+#         if 0 > nota > 10:
+#             print('Entre com uma nota de 0 a 10')
+#         else:
+#             self.__notas.append(nota)
     
+#     def calcular_media(self) -> float:
+#         return sum(self.__notas) / len(self.__notas)
+    
+#     def situacao(self) -> str:
+#         media = self.calcular_media()
+#         match media:
+#             case val if val >= 7:
+#                 situacao = 'Aprovado'
+#                 return situacao
+#             case val if val >= 5:
+#                 situacao = 'de Recuperação'
+#                 return situacao
+#             case _:
+#                 situacao = 'Reprovado'
+#                 return situacao
+            
+
+# joao = Aluno('Joao', 1, [3,5,7,9,2,10])
+# joao.adicionar_nota(0)
+# joao.adicionar_nota(11)
+# joao.adicionar_nota(10)
+# print(f'A média do aluno {joao.nome} é de {joao.calcular_media()} e ele está {joao.situacao()}')
 
 # ---
 
